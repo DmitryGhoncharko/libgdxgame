@@ -11,10 +11,30 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.mygdx.game.screen.GameScreen;
 
+/**
+ * Класс MenuUIStage представляет собой сцену пользовательского интерфейса для главного меню игры.
+ * Включает кнопку "Start game" для запуска игры и кнопку "Exit" для выхода из приложения.
+ * <p>
+ * Основные функции:
+ * - Инициализация и отображение кнопок "Start game" и "Exit".
+ * - Обработка событий клика на кнопках и выполнение соответствующих действий.
+ * - Освобождение ресурсов при завершении использования сцены.
+ * <p>
+ * Кнопка "Start game":
+ * - При клике на кнопку "Start game" создается экран игры (GameScreen) и устанавливается текущим экраном.
+ * <p>
+ * Кнопка "Exit":
+ * - При клике на кнопку "Exit" завершается приложение.
+ */
 public class MenuUIStage extends Stage {
     private final Game game;
     private final Skin skin;
 
+    /**
+     * Конструктор класса. Инициализирует сцену пользовательского интерфейса для главного меню.
+     *
+     * @param game Объект Game для управления экранами.
+     */
     public MenuUIStage(Game game) {
         this.game = game;
         skin = initSkin();
@@ -22,6 +42,11 @@ public class MenuUIStage extends Stage {
         addActor(initExitTextButton());
     }
 
+    /**
+     * Метод для инициализации кнопки "Start game".
+     *
+     * @return Созданная кнопка "Start game".
+     */
     private TextButton initStartTextButtonStartGame() {
 
         TextButton startButton = new TextButton("Start game", skin);
@@ -37,6 +62,11 @@ public class MenuUIStage extends Stage {
         return startButton;
     }
 
+    /**
+     * Метод для инициализации кнопки "Exit".
+     *
+     * @return Созданная кнопка "Exit".
+     */
     private TextButton initExitTextButton() {
 
         TextButton exitButton = new TextButton("Exit", skin);
@@ -51,11 +81,26 @@ public class MenuUIStage extends Stage {
         return exitButton;
     }
 
+    /**
+     * Метод для инициализации стилей интерфейса.
+     *
+     * @return Созданный объект Skin для стилей интерфейса.
+     */
     private Skin initSkin() {
         Skin skin = new Skin();
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.font = new BitmapFont();
         skin.add("default", textButtonStyle);
         return skin;
+    }
+
+    /**
+     * Метод для освобождения ресурсов, связанных с пользовательским интерфейсом, при завершении использования сцены.
+     */
+    @Override
+    public void dispose() {
+        super.dispose();
+        skin.dispose();
+        game.dispose();
     }
 }
