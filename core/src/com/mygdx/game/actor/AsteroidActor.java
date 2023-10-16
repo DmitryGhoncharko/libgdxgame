@@ -9,16 +9,17 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class AsteroidActor extends Actor {
     private final TextureRegion textureRegion;
-    private float fallSpeed;
+    private final Rectangle bounds = new Rectangle();
+    private float fallSpeed = 100f;
 
     public AsteroidActor(Texture texture) {
         this.textureRegion = new TextureRegion(texture);
         setBounds(getX(), getY(), textureRegion.getRegionWidth(), textureRegion.getRegionHeight());
-        fallSpeed = 100f;
     }
 
     public Rectangle getBounds() {
-        return new Rectangle((int) getX(), (int) getY(), (int) getWidth(), (int) getHeight());
+        bounds.set((int) getX(), (int) getY(), (int) getWidth(), (int) getHeight());
+        return bounds;
     }
 
     @Override
@@ -42,4 +43,5 @@ public class AsteroidActor extends Actor {
     public void setFallSpeed(float fallSpeed) {
         this.fallSpeed = fallSpeed;
     }
+
 }

@@ -23,12 +23,20 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+        update();
+        clearScreen();
+        draw();
+    }
+    private void draw(){
         stage.draw();
     }
-
+    private void update(){
+        stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+    }
+    private void clearScreen(){
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    }
     @Override
     public void resize(int width, int height) {
 

@@ -2,10 +2,11 @@ package com.mygdx.game.screen;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.mygdx.game.stage.GameStage;
 
-public class GameScreen implements com.badlogic.gdx.Screen {
+public class GameScreen implements Screen {
     private final Game game;
     private final GameStage gameStage;
 
@@ -22,10 +23,22 @@ public class GameScreen implements com.badlogic.gdx.Screen {
 
     @Override
     public void render(float delta) {
+        update(delta);
+        clearScreen();
+        draw();
+    }
+
+    private void clearScreen() {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        gameStage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+    }
+
+    private void draw() {
         gameStage.draw();
+    }
+
+    private void update(float delta) {
+        gameStage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
     }
 
     @Override

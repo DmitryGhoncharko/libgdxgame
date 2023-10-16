@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class ShipActor extends Actor {
 
-    private final float speed = 30f;
+    private static final float SHIP_SPEED = 30f;
     private final TextureRegion textureRegion;
     private Texture texture;
 
@@ -42,11 +42,11 @@ public class ShipActor extends Actor {
     }
 
     public void moveLeft() {
-        setX(getX() - speed);
+        setX(getX() - SHIP_SPEED);
     }
 
     public void moveRight() {
-        setX(getX() + speed);
+        setX(getX() + SHIP_SPEED);
     }
 
     public Rectangle getBounds() {
