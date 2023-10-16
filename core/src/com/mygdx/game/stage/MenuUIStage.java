@@ -9,18 +9,20 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.mygdx.game.screen.GameScreen;
 
 public class MenuUIStage extends Stage {
     private final Game game;
-    private Skin skin;
+    private final Skin skin;
 
-    public MenuUIStage(Game game){
+    public MenuUIStage(Game game) {
         this.game = game;
         skin = initSkin();
         addActor(initStartTextButtonStartGame());
         addActor(initExitTextButton());
     }
-    private TextButton initStartTextButtonStartGame(){
+
+    private TextButton initStartTextButtonStartGame() {
 
         TextButton startButton = new TextButton("Start game", skin);
         startButton.getLabel().setAlignment(Align.center);
@@ -29,16 +31,17 @@ public class MenuUIStage extends Stage {
         startButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Start game!");
+                game.setScreen(new GameScreen(game));
             }
         });
         return startButton;
     }
-    private TextButton initExitTextButton(){
+
+    private TextButton initExitTextButton() {
 
         TextButton exitButton = new TextButton("Exit", skin);
         exitButton.getLabel().setAlignment(Align.center);
-        exitButton.setPosition((this.getWidth() - exitButton.getWidth()) / 2, ((this.getHeight() - exitButton.getHeight()) / 2)-40f);
+        exitButton.setPosition((this.getWidth() - exitButton.getWidth()) / 2, ((this.getHeight() - exitButton.getHeight()) / 2) - 40f);
         exitButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -47,11 +50,12 @@ public class MenuUIStage extends Stage {
         });
         return exitButton;
     }
-    private Skin initSkin(){
+
+    private Skin initSkin() {
         Skin skin = new Skin();
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.font = new BitmapFont();
-        skin.add("default",textButtonStyle);
+        skin.add("default", textButtonStyle);
         return skin;
     }
 }
